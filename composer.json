@@ -12,8 +12,5 @@
     ],
     "require": {
       "magento-hackathon/magento-composer-installer": "*"
-    },
-    "extra": {
-      "package-xml": "package.xml"
     }
 }
