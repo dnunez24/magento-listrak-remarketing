@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- 
+	/**
+	* Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+	*/
+-->
+<config>
+    <menu>
+        <remarketing translate="title" module="remarketing">
+            <title>Listrak</title>
+            <sort_order>71</sort_order>
+            <children>
+                <emailcapture module="remarketing">
+                    <title>Email Capture</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/remarketing_emailcapture/</action>
+                </emailcapture>
+                <productattributes module="remarketing">
+                    <title>Product Attributes</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/remarketing_productattributes/</action>
+                </productattributes>
+            </children>
+        </remarketing>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <remarketing translate="title" module="remarketing">
+                        <title>Listrak Remarketing</title>
+                        <sort_order>200</sort_order>
+                        <children>
+                            <emailcapture translate="title">
+                                <title>Email Capture</title>
+                                <sort_order>200</sort_order>
+                            </emailcapture>
+                            <productattributes translate="title">
+                                <title>Product Attributes</title>
+                                <sort_order>201</sort_order>
+                            </productattributes>
+                        </children>
+                    </remarketing>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <remarketing translate="title">
+                                        <title>Listrak</title>
+                                        <sort_order>40</sort_order>
+                                    </remarketing>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

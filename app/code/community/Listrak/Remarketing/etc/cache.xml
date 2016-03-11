@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    /**
+    * Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+    */
+-->
+<config>
+    <placeholders>
+        <remarketing_sca_tracking>
+            <block>remarketing/tracking_sca</block>
+            <name>remarketing_sca_tracking</name>
+            <placeholder>REMARKETING_SCA</placeholder>
+            <container>Listrak_Remarketing_Model_Cache_Sca</container>
+            <cache_lifetime>86400</cache_lifetime>
+        </remarketing_sca_tracking>
+    </placeholders>
+</config>

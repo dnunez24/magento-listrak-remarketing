@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- 
+    /**
+    * Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+    */
+-->
+<layout>
+    <default>
+        <reference name="before_body_end">
+            <block type="remarketing/require_legacy" name="remarketing_legacy_block">
+                <block type="remarketing/legacy_ecjs" name="remarketing_ecjs" as="remarketing_ecjs"/>
+                <block type="remarketing/legacy_modal" name="remarketing_modal" as="remarketing_modal"/>
+            </block>
+            <block type="remarketing/require_onescript" name="remarketing_utils" template="remarketing/utils.phtml">
+                <action method="setAlwaysRenderTemplate"><val>true</val></action>
+            </block>
+            <block type="remarketing/require_onescript" name="remarketing_onescript_block" template="remarketing/async_wrapper.phtml">
+                <block type="remarketing/tracking_click" name="remarketing_click_tracking" />
+                <block type="remarketing/tracking_email" name="remarketing_email_capture" />
+                <block type="remarketing/tracking_activity" name="remarketing_activity_tracking" />
+            </block>
+            <block type="remarketing/tracking_sca" name="remarketing_sca_tracking" template="remarketing/async_wrapper.phtml">
+                <action method="setFullPageRendering"><val>true</val></action>
+            </block>
+            <block type="remarketing/require_onescript" name="remarketing_onescript" template="remarketing/onescript.phtml">
+                <action method="setAlwaysRenderTemplate"><val>true</val></action>
+            </block>
+        </reference>
+    </default>
+
+    <!-- confirmation page -->
+    <checkout_multishipping_success>
+        <reference name="after_body_start">
+            <block type="remarketing/conversion_fingerprint" name="remarketing_fingerprint_image_ms" />
+        </reference>
+        <reference name="remarketing_onescript_block">
+            <block type="remarketing/conversion_order" name="remarketing_conversion_order_ms" />
+            <block type="remarketing/conversion_cart" name="remarketing_conversion_cart_ms" />
+        </reference>
+    </checkout_multishipping_success>
+    <checkout_onepage_success>
+        <reference name="after_body_start">
+            <block type="remarketing/conversion_fingerprint" name="remarketing_fingerprint_image_op" />
+        </reference>
+        <reference name="remarketing_onescript_block">
+            <block type="remarketing/conversion_order" name="remarketing_conversion_order_op" />
+            <block type="remarketing/conversion_cart" name="remarketing_conversion_cart_op" />
+        </reference>
+    </checkout_onepage_success>
+</layout>

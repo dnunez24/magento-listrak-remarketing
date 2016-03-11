@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+    */
+-->
+<config>
+    <api>
+        <resources>
+            <listrak_remarketing_abandonedcart translate="title"
+                                               module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/abandonedcart_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get Abandoned Carts</title>
+                        <method>items</method>
+                    </list>
+                    <purge translate="title" module="listrak_remarketing">
+                        <title>Purge old data</title>
+                        <method>purge</method>
+                    </purge>
+                </methods>
+            </listrak_remarketing_abandonedcart>
+            <listrak_remarketing_click translate="title"
+                                       module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/click_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get clicks</title>
+                        <method>items</method>
+                    </list>
+                    <purge translate="title" module="listrak_remarketing">
+                        <title>Purge old data</title>
+                        <method>purge</method>
+                    </purge>
+                </methods>
+            </listrak_remarketing_click>
+            <listrak_remarketing_log translate="title" module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/log_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get log entries</title>
+                        <method>items</method>
+                    </list>
+                    <purge translate="title" module="listrak_remarketing">
+                        <title>Purge old data</title>
+                        <method>purge</method>
+                    </purge>
+                </methods>
+            </listrak_remarketing_log>
+            <listrak_remarketing_order translate="title"
+                                       module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/apiextension_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get orders</title>
+                        <method>orders</method>
+                    </list>
+                </methods>
+            </listrak_remarketing_order>
+            <listrak_remarketing_order_status translate="title"
+                                              module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/apiextension_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get order status changes</title>
+                        <method>orderStatus</method>
+                    </list>
+                </methods>
+            </listrak_remarketing_order_status>
+            <listrak_remarketing_product translate="title"
+                                         module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/product_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get products</title>
+                        <method>products</method>
+                    </list>
+                    <updateList translate="title" module="listrak_remarketing">
+                        <title>Get updated products</title>
+                        <method>updates</method>
+                    </updateList>
+                    <purchasableList translate="title" module="listrak_remarketing">
+                        <title>Get purchasable products</title>
+                        <method>purchasable</method>
+                    </purchasableList>
+                </methods>
+            </listrak_remarketing_product>
+            <listrak_remarketing_subscriber translate="title"
+                                            module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/apiextension_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get subscribers and unsubscribers</title>
+                        <method>subscribers</method>
+                    </list>
+                    <purge translate="title" module="listrak_remarketing">
+                        <title>Purge old data</title>
+                        <method>subscribersPurge</method>
+                    </purge>
+                </methods>
+            </listrak_remarketing_subscriber>
+            <listrak_remarketing_customer translate="title"
+                                          module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/apiextension_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get customers</title>
+                        <method>customers</method>
+                    </list>
+                </methods>
+            </listrak_remarketing_customer>
+            <listrak_remarketing_info translate="title" module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/apiextension_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get info</title>
+                        <method>info</method>
+                    </list>
+                </methods>
+            </listrak_remarketing_info>
+            <listrak_remarketing_review translate="title"
+                                        module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/review_update_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get Review List</title>
+                        <method>reviewList</method>
+                    </list>
+                    <updateList>
+                        <title>Get Incremental Update</title>
+                        <method>reviewUpdateList</method>
+                    </updateList>
+                    <deleteList>
+                        <title>Get Deleted Reviews</title>
+                        <method>reviewDeleteList</method>
+                    </deleteList>
+                    <updatePurge>
+                        <title>Purge Review Update Table</title>
+                        <method>reviewUpdatePurge</method>
+                    </updatePurge>
+                </methods>
+            </listrak_remarketing_review>
+            <listrak_remarketing_rating_summary translate="title"
+                                                module="listrak_remarketing">
+                <title>Listrak Remarketing API</title>
+                <model>listrak/review_update_api</model>
+                <methods>
+                    <list translate="title" module="listrak_remarketing">
+                        <title>Get Rating Summary List</title>
+                        <method>ratingSummaryList</method>
+                    </list>
+                    <updateList>
+                        <title>Get Incremental Update</title>
+                        <method>ratingSummaryUpdateList</method>
+                    </updateList>
+                </methods>
+            </listrak_remarketing_rating_summary>
+        </resources>
+        <resources_alias>
+            <abandonedcart>listrak_remarketing_abandonedcart</abandonedcart>
+            <click>listrak_remarketing_click</click>
+            <log>listrak_remarketing_log</log>
+            <listrakorder>listrak_remarketing_order</listrakorder>
+            <listrakorderstatus>listrak_remarketing_order_status</listrakorderstatus>
+            <listrakproduct>listrak_remarketing_product</listrakproduct>
+            <listraksubscriber>listrak_remarketing_subscriber</listraksubscriber>
+            <listrakcustomer>listrak_remarketing_customer</listrakcustomer>
+            <listrakinfo>listrak_remarketing_info</listrakinfo>
+            <listrakreview>listrak_remarketing_review</listrakreview>
+            <listrakratingsummary>listrak_remarketing_rating_summary</listrakratingsummary>
+        </resources_alias>
+        <v2>
+            <resources_function_prefix>
+                <abandonedcart>listrakRemarketingAbandonedCart</abandonedcart>
+                <click>listrakRemarketingClick</click>
+                <log>listrakRemarketingLog</log>
+                <listrakorder>listrakRemarketingOrder</listrakorder>
+                <listrakorderstatus>listrakRemarketingOrderStatus</listrakorderstatus>
+                <listrakproduct>listrakRemarketingProduct</listrakproduct>
+                <listraksubscriber>listrakRemarketingSubscriber</listraksubscriber>
+                <listrakcustomer>listrakRemarketingCustomer</listrakcustomer>
+                <listrakinfo>listrakRemarketingInfo</listrakinfo>
+                <listrakreview>listrakRemarketingReview</listrakreview>
+                <listrakratingsummary>listrakRemarketingRatingSummary</listrakratingsummary>
+            </resources_function_prefix>
+        </v2>
+        <faults>
+            <incorrect_date>
+                <code>12</code>
+                <message>INCORRECT DATE FORMAT [YYYY-MM-DD HH:MM:SS]</message>
+            </incorrect_date>
+        </faults>
+    </api>
+</config>

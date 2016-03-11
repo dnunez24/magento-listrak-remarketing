@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- 
+	/**
+	* Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+	*/
+-->
+<config>
+    <modules>
+        <Listrak_Remarketing>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Listrak_Remarketing>
+    </modules>
+</config>

@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  /**
+  * Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+  */
+-->
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="{{var wsdl.name}}"
+                  targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="urn:{{var wsdl.name}}">
+            <xsd:complexType name="ArrayOfString">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!-- session -->
+            <xsd:complexType name="ListrakRemarketingSessionEntity">
+                <xsd:sequence>
+                    <xsd:element name="session_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="created_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="quote_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="ips" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="pi_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customer"
+                                 type="typens:ListrakRemarketingCustomerEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="emails"
+                                 type="typens:ArrayOfListrakRemarketingSessionEmail"
+                                 minOccurs="0"/>
+                    <xsd:element name="clicks"
+                                 type="typens:ArrayOfListrakRemarketingClick"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingSessionEmailEntity">
+                <xsd:sequence>
+                    <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="created_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="page" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="field_id" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingSessionEmail">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingSessionEmailEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- abandoned cart -->
+            <xsd:complexType name="ListrakRemarketingAbandonedCartEntity">
+                <xsd:sequence>
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="session"
+                                 type="typens:ListrakRemarketingSessionEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="products"
+                                 type="typens:ArrayOfListrakRemarketingAbandonedCartProduct"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingAbandonedCart">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingAbandonedCartEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingAbandonedCartProductEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="price" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="special_price" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="special_from_date" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="special_to_date" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="cost" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="short_description" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="weight" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="url_key" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="url_path" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="image" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="small_image" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="thumbnail" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="qty" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="bundle_items"
+                                 type="typens:ArrayOfListrakRemarketingAbandonedCartProduct"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingAbandonedCartProduct">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingAbandonedCartProductEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- product  -->
+            <xsd:complexType name="ListrakRemarketingAttributeEntity">
+                <xsd:sequence>
+                    <xsd:element name="attribute_name" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="values" type="typens:ArrayOfString" minOccurs="0"/>
+                    <xsd:element name="parent_value" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="parent_values" type="typens:ArrayOfString" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType
+                    name="ArrayOfListrakRemarketingAttributeEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingAttributeEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingConfigurableAttributeEntity">
+                <xsd:sequence>
+                    <xsd:element name="attribute_name" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType
+                    name="ArrayOfListrakRemarketingConfigurableAttributeEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingConfigurableAttributeEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingProductLinkEntity">
+                <xsd:sequence>
+                    <xsd:element name="link_type" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="position" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingProductLinkEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray"
+                                 type="typens:ListrakRemarketingProductLinkEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingProductIdEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingProductId">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray"
+                                 type="typens:ListrakRemarketingProductIdEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingProductEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="price" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="special_price" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="special_from_date" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="special_to_date" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="cost" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="short_description" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="weight" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="url_key" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="url_path" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="image" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="small_image" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="thumbnail" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="qty" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="parent_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="parent_sku" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="brand" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="category" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="sub_category" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="in_stock" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="qty_on_hand" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="purchasable" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="type" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="configurable_attributes"
+                                 type="typens:ArrayOfListrakRemarketingConfigurableAttributeEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="links"
+                                 type="typens:ArrayOfListrakRemarketingProductLinkEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="attributes"
+                                 type="typens:ArrayOfListrakRemarketingAttributeEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="meta3" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta4" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta5" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingProduct">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingProductEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- click -->
+            <xsd:complexType name="ListrakRemarketingClickEntity">
+                <xsd:sequence>
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customer_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customer_email" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="querystring" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="click_date" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="token_uid" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="session_uid" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="pi_id" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingClick">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingClickEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- log -->
+            <xsd:complexType name="ListrakRemarketingLogEntity">
+                <xsd:sequence>
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="date_entered" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="log_type_id" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingLog">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingLogEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- order -->
+            <xsd:complexType name="ListrakRemarketingOrderEntity">
+                <xsd:sequence>
+                    <xsd:element name="info"
+                                 type="typens:ListrakRemarketingOrderInfoEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="billing_address"
+                                 type="typens:ListrakRemarketingOrderAddressEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="shipping_address"
+                                 type="typens:ListrakRemarketingOrderAddressEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="product"
+                                 type="typens:ArrayOfListrakRemarketingProductShort"
+                                 minOccurs="0"/>
+                    <xsd:element name="session"
+                                 type="typens:ListrakRemarketingSessionEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="customer"
+                                 type="typens:ListrakRemarketingCustomerEntity"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingOrder">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingOrderEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingOrderInfoEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="order_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customer_firstname" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="customer_lastname" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="customer_email" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="subtotal" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="tax_amount" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="discount_amount" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="shipping_amount" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="grand_total" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="coupon_code" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="billing_firstname" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="meta1" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta2" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta3" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta4" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta5" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="created_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingOrderAddressEntity">
+                <xsd:sequence>
+                    <xsd:element name="firstname" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="lastname" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="company" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="street" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="city" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="region" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="postcode" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="country" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingProductShortEntity">
+                <xsd:sequence>
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="price" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="in_stock" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="qty_on_hand" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="qty_ordered" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="product_price" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="meta1" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta2" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta3" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta4" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta5" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="bundle_items"
+                                 type="typens:ArrayOfListrakRemarketingProductShort"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingProductShort">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingProductShortEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- order status -->
+            <xsd:complexType name="ListrakRemarketingOrderStatusEntity">
+                <xsd:sequence>
+                    <xsd:element name="increment_id" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="tracking_number" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="carrier_code" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta1" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta2" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta3" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta4" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta5" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="quantities" type="typens:ArrayOfListrakRemarketingProductQuantity" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingOrderStatus">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingOrderStatusEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingProductQuantityEntity">
+                <xsd:sequence>
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="in_stock" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="qty_on_hand" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingProductQuantity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                   type="typens:ListrakRemarketingProductQuantityEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- customer -->
+            <xsd:complexType name="ListrakRemarketingCustomerEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="firstname" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="lastname" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="website_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="gender_name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="dob" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="group_name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta2" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta3" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta4" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta5" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingCustomer">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingCustomerEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- subscriber -->
+            <xsd:complexType name="ListrakRemarketingSubscriberEntity">
+                <xsd:sequence>
+                    <xsd:element name="subscriber_id" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="store_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customer_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="change_status_at" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="subscriber_email" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="subscriber_status" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingSubscriber">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingSubscriberEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="ListrakRemarketingInfoEntity">
+                <xsd:sequence>
+                    <xsd:element name="magentoVersion" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="listrakExtension"
+                                 type="typens:ListrakRemarketingInfoExtensionEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="listrakSettings"
+                                 type="typens:ListrakRemarketingSettingEntity"
+                                 minOccurs="0"/>
+                    <xsd:element name="modules" type="typens:ArrayOfString"
+                                 minOccurs="0"/>
+                    <xsd:element name="ini" type="typens:ArrayOfString"
+                                 minOccurs="0"/>
+                    <xsd:element name="classes" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="counts" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingInfoExtensionEntity">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="active" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="output" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="install_version" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="data_version" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingSettingEntity">
+                <xsd:sequence>
+                    <xsd:element name="coreEnabled" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="onescriptEnabled" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="onescriptReady" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="trackingID" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="scaEnabled" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="activityEnabled" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="reviewsApiEnabled" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="trackingTablesExist" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="skipCategoriesText" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="skipCategories" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- review list / review update list -->
+            <xsd:complexType name="ListrakRemarketingReviewListResult">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingReviewListItem"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingReviewListItem">
+                <xsd:sequence>
+                    <xsd:element name="update_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="review_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="product_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="title" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="text" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="overall_rating" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="created_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="reviewer_name" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="status_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="status_code" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="ratings"
+                                 type="typens:ArrayOfListrakRemarketingReviewRating"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingReviewRating">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingReviewRatingItem"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingReviewRatingItem">
+                <xsd:sequence>
+                    <xsd:element name="rating_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="rating_code" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="rating" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- rating summary list / rating summary update list -->
+            <xsd:complexType name="ListrakRemarketingRatingSummaryListResult">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingRatingSummaryItem"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingRatingSummaryItem">
+                <xsd:sequence>
+                    <xsd:element name="update_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="rating_summary_id" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="product_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="updated_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="total_reviews" type="xsd:string"
+                                 minOccurs="0"/>
+                    <xsd:element name="rating" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="ratings"
+                                 type="typens:ArrayOfListrakRemarketingRatingSummaryAttribute"
+                                 minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfListrakRemarketingRatingSummaryAttribute">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingRatingSummaryAttributeItem"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingRatingSummaryAttributeItem">
+                <xsd:sequence>
+                    <xsd:element name="rating_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="rating_code" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="rating" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- review delete list -->
+            <xsd:complexType name="ListrakRemarketingReviewDeleteListResult">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded"
+                                 name="complexObjectArray"
+                                 type="typens:ListrakRemarketingDeletedReview"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ListrakRemarketingDeletedReview">
+                <xsd:sequence>
+                    <xsd:element name="delete_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="review_id" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- review update purge -->
+            <xsd:complexType name="ListrakRemarketingReviewUpdatePurgeResult">
+                <xsd:sequence>
+                    <xsd:element name="count" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="before" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- message parameters -->
+            <xsd:element name="listrakRemarketingAbandonedCartListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingAbandonedCartListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingAbandonedCart"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingAbandonedCartPurgeRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingAbandonedCartPurgeResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingClickListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingClickListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingClick"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingClickPurgeRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingClickPurgeResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingLogListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="logTypeId"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingLogListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingLog"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingLogPurgeRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingLogPurgeResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingOrderListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingOrderListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingOrder"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingOrderStatusListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="filters"
+                                     type="typens:filters"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingOrderStatusListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingOrderStatus"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingProductListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="withAttributes"
+                                     type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingProductListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingProduct"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingProductUpdateListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate" type="xsd:dateTime"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate" type="xsd:dateTime"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage" type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page" type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="withAttributes" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingProductUpdateListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingProduct"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingProductPurchasableListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionID" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage" type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingProductPurchasableListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                             type="typens:ArrayOfListrakRemarketingProductId"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingSubscriberListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDate"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingSubscriberListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingSubscriber"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingSubscriberPurgeRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="endDate"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingSubscriberPurgeResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingCustomerListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="websiteId"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="perPage"
+                                     type="xsd:int"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="page"
+                                     type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingCustomerListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ArrayOfListrakRemarketingCustomer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingInfoListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingInfoListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingInfoEntity"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="chunkSize"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startReviewId"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingReviewListResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingRatingSummaryListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="chunkSize"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1"
+                                     name="startRatingSummaryId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingRatingSummaryListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingRatingSummaryListResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewUpdateListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="chunkSize"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startUpdateId"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewUpdateListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingReviewListResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element
+                    name="listrakRemarketingRatingSummaryUpdateListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="chunkSize"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startUpdateId"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element
+                    name="listrakRemarketingRatingSummaryUpdateListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingRatingSummaryListResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewDeleteListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="chunkSize"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="startDeleteId"
+                                     type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewDeleteListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingReviewDeleteListResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewUpdatePurgeRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId"
+                                     type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1"
+                                     name="purgeBeforeDays" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listrakRemarketingReviewUpdatePurgeResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:ListrakRemarketingReviewUpdatePurgeResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="listrakRemarketingAbandonedCartListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingAbandonedCartListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingAbandonedCartListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingAbandonedCartListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingAbandonedCartPurgeRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingAbandonedCartPurgeRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingAbandonedCartPurgeResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingAbandonedCartPurgeResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingClickListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingClickListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingClickListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingClickListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingClickPurgeRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingClickPurgeRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingClickPurgeResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingClickPurgeResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingLogListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingLogListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingLogListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingLogListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingLogPurgeRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingLogPurgeRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingLogPurgeResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingLogPurgeResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingOrderListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingOrderListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingOrderListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingOrderListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingOrderStatusListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingOrderStatusListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingOrderStatusListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingOrderStatusListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingProductListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingProductListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingProductListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingProductListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingProductUpdateListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingProductUpdateListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingProductUpdateListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingProductUpdateListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingProductPurchasableListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingProductPurchasableListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingProductPurchasableListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingProductPurchasableListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingSubscriberListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingSubscriberListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingSubscriberListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingSubscriberListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingSubscriberPurgeRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingSubscriberPurgeRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingSubscriberPurgeResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingSubscriberPurgeResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingCustomerListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingCustomerListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingCustomerListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingCustomerListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingInfoListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingInfoListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingInfoListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingInfoListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingRatingSummaryListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingRatingSummaryListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingRatingSummaryListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingRatingSummaryListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewUpdateListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewUpdateListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewUpdateListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewUpdateListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingRatingSummaryUpdateListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingRatingSummaryUpdateListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingRatingSummaryUpdateListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingRatingSummaryUpdateListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewDeleteListRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewDeleteListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewDeleteListResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewDeleteListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewUpdatePurgeRequest">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewUpdatePurgeRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="listrakRemarketingReviewUpdatePurgeResponse">
+        <wsdl:part name="parameters"
+                   element="typens:listrakRemarketingReviewUpdatePurgeResponseParam"/>
+    </wsdl:message>
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="listrakRemarketingAbandonedCartList">
+            <wsdl:documentation>Get stores abandoned carts</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingAbandonedCartListRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingAbandonedCartListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingAbandonedCartPurge">
+            <wsdl:documentation>Purge abandoned carts</wsdl:documentation>
+            <wsdl:input
+                    message="typens:listrakRemarketingAbandonedCartPurgeRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingAbandonedCartPurgeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingClickList">
+            <wsdl:documentation>Get clicks</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingClickListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingClickListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingClickPurge">
+            <wsdl:documentation>Purge clicks</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingClickPurgeRequest"/>
+            <wsdl:output message="typens:listrakRemarketingClickPurgeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingLogList">
+            <wsdl:documentation>Get log entries</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingLogListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingLogListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingLogPurge">
+            <wsdl:documentation>Purge log entries</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingLogPurgeRequest"/>
+            <wsdl:output message="typens:listrakRemarketingLogPurgeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingOrderList">
+            <wsdl:documentation>Get orders</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingOrderListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingOrderListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingOrderStatusList">
+            <wsdl:documentation>Get order status changes</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingOrderStatusListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingOrderStatusListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingProductList">
+            <wsdl:documentation>Get products</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingProductListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingProductListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingProductUpdateList">
+            <wsdl:documentation>Get updated products</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingProductUpdateListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingProductUpdateListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingProductPurchasableList">
+            <wsdl:documentation>Get purchasable products</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingProductPurchasableListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingProductPurchasableListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingSubscriberList">
+            <wsdl:documentation>Get subscribers and unsubscribers</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingSubscriberListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingSubscriberListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingSubscriberPurge">
+            <wsdl:documentation>Purge old subscriber updates</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingSubscriberPurgeRequest"/>
+            <wsdl:output message="typens:listrakRemarketingSubscriberPurgeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingCustomerList">
+            <wsdl:documentation>Get customers</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingCustomerListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingCustomerListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingInfoList">
+            <wsdl:documentation>Get info</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingInfoListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingInfoListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewList">
+            <wsdl:documentation>Get review list</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingReviewListRequest"/>
+            <wsdl:output message="typens:listrakRemarketingReviewListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingRatingSummaryList">
+            <wsdl:documentation>Get rating summary list</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingRatingSummaryListRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingRatingSummaryListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewUpdateList">
+            <wsdl:documentation>Get review list</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingReviewUpdateListRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingReviewUpdateListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingRatingSummaryUpdateList">
+            <wsdl:documentation>Get rating summary list</wsdl:documentation>
+            <wsdl:input
+                    message="typens:listrakRemarketingRatingSummaryUpdateListRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingRatingSummaryUpdateListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewDeleteList">
+            <wsdl:documentation>Get deleted reviews list</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingReviewDeleteListRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingReviewDeleteListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewUpdatePurge">
+            <wsdl:documentation>Get deleted reviews list</wsdl:documentation>
+            <wsdl:input message="typens:listrakRemarketingReviewUpdatePurgeRequest"/>
+            <wsdl:output
+                    message="typens:listrakRemarketingReviewUpdatePurgeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding"
+                  type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="listrakRemarketingAbandonedCartList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingAbandonedCartPurge">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingClickList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingClickPurge">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingLogList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingLogPurge">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingOrderList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingOrderStatusList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingProductList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingProductUpdateList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingProductPurchasableList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingSubscriberList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingSubscriberPurge">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingCustomerList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingInfoList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingRatingSummaryList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewUpdateList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingRatingSummaryUpdateList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewDeleteList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listrakRemarketingReviewUpdatePurge">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="{{var wsdl.name}}Service">
+        <wsdl:port name="{{var wsdl.handler}}Port"
+                   binding="typens:{{var wsdl.handler}}Binding">
+            <soap:address location="{{var wsdl.url}}"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

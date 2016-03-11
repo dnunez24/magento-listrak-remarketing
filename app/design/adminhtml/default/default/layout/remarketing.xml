@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- 
+	/**
+	* Listrak Remarketing Magento Extension Ver. 1.0.0 - Copyright (c) 2011 Listrak, Inc. 
+	*/
+-->
+<layout>
+    <default>
+        <reference name="notifications">
+            <block type="remarketing/adminhtml_notifications"
+                   name="remarketing_notifications"
+                   as="remarketing_notifications"/>
+        </reference>
+    </default>
+</layout>
