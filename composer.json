@@ -1,8 +1,14 @@
 {
     "name": "copious/magento-listrak-remarketing",
     "description": "Magento Listrak extension",
-    "version": "1.1.9.5",
+    "version": "1.1.9",
+    "version_normalized": "1.1.9.5",
+    "dist": {
+        "type": "tar",
+        "url": "https://github.com/dnunez24/magento-listrak-remarketing/archive/v1.1.9.5.tar.gz"
+    },
     "type": "magento-module",
+    "license": ["EULA"],
     "authors": [
         {
             "name": "David Nunez",
